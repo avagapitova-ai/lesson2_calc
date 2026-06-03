@@ -1,0 +1,9 @@
+{
+  "name": "family-budget",
+  "version": "1.0.0",
+  "description": "Семейный бюджет — лендинг и калькулятор",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve . -l 3000"
+  }
+}

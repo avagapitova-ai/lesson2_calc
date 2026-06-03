@@ -1,0 +1,131 @@
+/* Стили приветственного лендинга (главная страница) */
+
+.hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px 40px;
+  text-align: center;
+}
+
+.hero__badge {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--btn-primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 5vw, 42px);
+  line-height: 1.2;
+}
+
+.hero__lead {
+  margin: 0 auto 32px;
+  max-width: 640px;
+  font-size: 18px;
+  color: var(--text-muted);
+}
+
+.hero__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--section-border);
+}
+
+.btn-outline:hover {
+  border-color: var(--btn-primary);
+  color: var(--btn-primary);
+  text-decoration: none;
+}
+
+.features {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 24px 56px;
+}
+
+.features h2 {
+  margin: 0 0 28px;
+  text-align: center;
+  font-size: 28px;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  background: var(--card-bg);
+  border: 1px solid var(--section-border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.feature-card__icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.feature-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.steps {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  padding: 0 24px;
+}
+
+.steps h2 {
+  text-align: center;
+  margin: 0 0 24px;
+  font-size: 24px;
+}
+
+.steps ol {
+  margin: 0;
+  padding-left: 24px;
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+.steps li {
+  margin-bottom: 10px;
+}
+
+.steps li strong {
+  color: var(--text-main);
+}
+
+@media (max-width: 800px) {
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 40px;
+  }
+}

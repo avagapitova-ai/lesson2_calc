@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Калькулятор семейного бюджета — расчёт доходов, расходов и остатка." />
+  <title>Калькулятор — Семейный бюджет</title>
+
+  <script src="js/theme-early.js"></script>
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/calculator.css" />
+</head>
+
+<body class="page-wrap">
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-logo" href="index.html">Семейный бюджет</a>
+      <nav class="site-nav" aria-label="Основное меню">
+        <a href="index.html">Главная</a>
+        <a href="calculator.html" class="is-active">Калькулятор</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+
+    <!--
+      КАЛЬКУЛЯТОР СЕМЕЙНОГО БЮДЖЕТА
+      Форма из трёх колонок: доходы, обязательные и переменные расходы.
+    -->
+    <div class="budget-calculator">
+      <h1>Калькулятор семейного бюджета</h1>
+      <p class="subtitle">
+        Введите доходы и расходы семьи, чтобы рассчитать остаток бюджета
+        и понять финансовую ситуацию.
+      </p>
+
+      <div class="calculator-grid">
+
+        <!-- БЛОК ДОХОДОВ -->
+        <div class="calculator-section">
+          <h2>Доходы</h2>
+
+          <div class="field">
+            <label for="salary1">Зарплата 1</label>
+            <input type="number" id="salary1" min="0" placeholder="Например: 80000" />
+          </div>
+
+          <div class="field">
+            <label for="salary2">Зарплата 2</label>
+            <input type="number" id="salary2" min="0" placeholder="Например: 60000" />
+          </div>
+
+          <div class="field">
+            <label for="extraIncome">Дополнительный доход</label>
+            <input type="number" id="extraIncome" min="0" placeholder="Подработки, пособия и т.д." />
+          </div>
+        </div>
+
+        <!-- БЛОК ОБЯЗАТЕЛЬНЫХ РАСХОДОВ -->
+        <div class="calculator-section">
+          <h2>Обязательные расходы</h2>
+
+          <div class="field">
+            <label for="rent">Жильё / ипотека / аренда</label>
+            <input type="number" id="rent" min="0" placeholder="Например: 40000" />
+          </div>
+
+          <div class="field">
+            <label for="utilities">Коммунальные платежи</label>
+            <input type="number" id="utilities" min="0" placeholder="Например: 8000" />
+          </div>
+
+          <div class="field">
+            <label for="loans">Кредиты / рассрочки</label>
+            <input type="number" id="loans" min="0" placeholder="Например: 15000" />
+          </div>
+
+          <div class="field">
+            <label for="education">Образование / детский сад</label>
+            <input type="number" id="education" min="0" placeholder="Например: 12000" />
+          </div>
+        </div>
+
+        <!-- БЛОК ПЕРЕМЕННЫХ РАСХОДОВ -->
+        <div class="calculator-section">
+          <h2>Переменные расходы</h2>
+
+          <div class="field">
+            <label for="food">Продукты</label>
+            <input type="number" id="food" min="0" placeholder="Например: 35000" />
+          </div>
+
+          <div class="field">
+            <label for="transport">Транспорт</label>
+            <input type="number" id="transport" min="0" placeholder="Например: 10000" />
+          </div>
+
+          <div class="field">
+            <label for="health">Здоровье</label>
+            <input type="number" id="health" min="0" placeholder="Например: 7000" />
+          </div>
+
+          <div class="field">
+            <label for="entertainment">Развлечения и покупки</label>
+            <input type="number" id="entertainment" min="0" placeholder="Например: 15000" />
+          </div>
+        </div>
+
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="calculate-btn" onclick="calculateBudget()">
+          Рассчитать бюджет
+        </button>
+        <button type="button" class="reset-btn" onclick="resetCalculator()">
+          Очистить
+        </button>
+      </div>
+
+      <!-- БЛОК РЕЗУЛЬТАТОВ (показывается после расчёта) -->
+      <div class="result" id="resultBlock">
+        <h2>Результат расчёта</h2>
+
+        <div class="result-grid">
+          <div class="result-card">
+            <span>Общий доход</span>
+            <strong id="totalIncome">0 ₽</strong>
+          </div>
+
+          <div class="result-card">
+            <span>Общие расходы</span>
+            <strong id="totalExpenses">0 ₽</strong>
+          </div>
+
+          <div class="result-card">
+            <span>Остаток</span>
+            <strong id="balance">0 ₽</strong>
+          </div>
+
+          <div class="result-card">
+            <span>Можно отложить</span>
+            <strong id="savingPercent">0%</strong>
+          </div>
+        </div>
+
+        <div class="advice" id="adviceText"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>
+        <a href="index.html">← На главную</a>
+        · Семейный бюджет · данные не отправляются на сервер
+      </p>
+    </div>
+  </footer>
+
+  <button
+    type="button"
+    class="theme-toggle"
+    id="themeToggle"
+    onclick="toggleTheme()"
+    aria-label="Переключить на тёмную тему"
+    title="Переключить тему"
+  >
+    <span class="sr-only">Переключить тему оформления</span>
+    <span id="themeToggleIcon" aria-hidden="true">🌙</span>
+  </button>
+
+  <script src="js/theme.js"></script>
+  <script src="js/calculator.js"></script>
+</body>
+</html>

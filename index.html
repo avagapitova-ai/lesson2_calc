@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Семейный бюджет — простой калькулятор доходов и расходов для всей семьи." />
+  <title>Семейный бюджет — главная</title>
+
+  <!-- Тема до загрузки стилей, чтобы не мигал светлый фон -->
+  <script src="js/theme-early.js"></script>
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+</head>
+
+<body class="page-wrap">
+
+  <!--
+    ШАПКА САЙТА
+    Логотип ведёт на главную, в меню — ссылки на разделы.
+  -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-logo" href="index.html">Семейный бюджет</a>
+      <nav class="site-nav" aria-label="Основное меню">
+        <a href="index.html" class="is-active">Главная</a>
+        <a href="calculator.html">Калькулятор</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+
+    <!--
+      ПРИВЕТСТВЕННЫЙ БЛОК (HERO)
+      Кратко объясняем, зачем сервис, и ведём к калькулятору.
+    -->
+    <section class="hero">
+      <span class="hero__badge">Для всей семьи</span>
+      <h1>Добро пожаловать в планировщик семейного бюджета</h1>
+      <p class="hero__lead">
+        Соберите доходы и расходы в одном месте, узнайте остаток на месяц
+        и получите понятную подсказку — хватает ли денег на накопления.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn-primary" href="calculator.html">Открыть калькулятор</a>
+        <a class="btn btn-outline" href="#features">Узнать возможности</a>
+      </div>
+    </section>
+
+    <!--
+      БЛОК ВОЗМОЖНОСТЕЙ
+      Три карточки с ключевыми функциями приложения.
+    -->
+    <section class="features" id="features">
+      <h2>Что умеет сервис</h2>
+      <div class="features__grid">
+
+        <article class="feature-card">
+          <div class="feature-card__icon" aria-hidden="true">📊</div>
+          <h3>Учёт доходов и расходов</h3>
+          <p>
+            Зарплаты, обязательные платежи и повседневные траты —
+            всё вводится в отдельные поля и суммируется автоматически.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-card__icon" aria-hidden="true">💰</div>
+          <h3>Остаток и накопления</h3>
+          <p>
+            После расчёта видно, сколько остаётся в месяц
+            и какой процент дохода можно отложить.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-card__icon" aria-hidden="true">💡</div>
+          <h3>Подсказки по ситуации</h3>
+          <p>
+            Сервис подскажет, если расходы выше доходов
+            или если стоит увеличить финансовую подушку.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!--
+      КАК НАЧАТЬ
+      Короткая инструкция из трёх шагов.
+    -->
+    <section class="steps" id="how-it-works">
+      <h2>Как начать</h2>
+      <ol>
+        <li><strong>Откройте калькулятор</strong> — перейдите на страницу с формой ввода.</li>
+        <li><strong>Заполните суммы</strong> — укажите доходы и основные статьи расходов семьи.</li>
+        <li><strong>Нажмите «Рассчитать»</strong> — изучите остаток и рекомендацию по бюджету.</li>
+      </ol>
+    </section>
+
+  </main>
+
+  <!-- Подвал с копирайтом -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>Семейный бюджет · учебный проект · данные хранятся только в вашем браузере</p>
+    </div>
+  </footer>
+
+  <!--
+    КНОПКА СМЕНЫ ТЕМЫ (светлая ↔ тёмная)
+    Закреплена в правом нижнем углу на всех страницах.
+  -->
+  <button
+    type="button"
+    class="theme-toggle"
+    id="themeToggle"
+    onclick="toggleTheme()"
+    aria-label="Переключить на тёмную тему"
+    title="Переключить тему"
+  >
+    <span class="sr-only">Переключить тему оформления</span>
+    <span id="themeToggleIcon" aria-hidden="true">🌙</span>
+  </button>
+
+  <script src="js/theme.js"></script>
+</body>
+</html>
