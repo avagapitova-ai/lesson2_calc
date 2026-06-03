@@ -6,8 +6,18 @@
   <meta name="description" content="Семейный бюджет — простой калькулятор доходов и расходов для всей семьи." />
   <title>Семейный бюджет — главная</title>
 
-  <!-- Тема до загрузки стилей, чтобы не мигал светлый фон -->
-  <script src="js/theme-early.js"></script>
+  <!--
+    РАННЕЕ ПРИМЕНЕНИЕ ТЕМЫ
+    Читаем сохранённый выбор из браузера до отрисовки страницы,
+    чтобы при тёмной теме не мигал светлый фон.
+  -->
+  <script>
+    (function () {
+      if (localStorage.getItem('budget-theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 
   <link rel="stylesheet" href="css/theme.css" />
   <link rel="stylesheet" href="css/layout.css" />
@@ -110,8 +120,9 @@
   </footer>
 
   <!--
-    КНОПКА СМЕНЫ ТЕМЫ (светлая ↔ тёмная)
-    Закреплена в правом нижнем углу на всех страницах.
+    ПЕРЕКЛЮЧЕНИЕ ТЕМЫ (светлая ↔ тёмная)
+    Кнопка закреплена в правом нижнем углу экрана.
+    Стили тем заданы в css/theme.css через переменные и атрибут data-theme на <html>.
   -->
   <button
     type="button"
@@ -125,6 +136,49 @@
     <span id="themeToggleIcon" aria-hidden="true">🌙</span>
   </button>
 
-  <script src="js/theme.js"></script>
+  <!--
+    СКРИПТ ПЕРЕКЛЮЧЕНИЯ ТЕМЫ (только для главной страницы)
+    Ключ в localStorage: budget-theme — значения "light" или "dark".
+    Тот же ключ используется на calculator.html, чтобы тема сохранялась между страницами.
+  -->
+  <script>
+    var THEME_STORAGE_KEY = 'budget-theme';
+
+    function getCurrentTheme() {
+      return document.documentElement.getAttribute('data-theme') === 'dark'
+        ? 'dark'
+        : 'light';
+    }
+
+    /* Обновляет иконку на кнопке: луна — перейти в тёмную, солнце — в светлую */
+    function updateThemeToggleUI() {
+      var isDark = getCurrentTheme() === 'dark';
+      var btn = document.getElementById('themeToggle');
+      var icon = document.getElementById('themeToggleIcon');
+
+      icon.textContent = isDark ? '☀️' : '🌙';
+      btn.setAttribute(
+        'aria-label',
+        isDark ? 'Переключить на светлую тему' : 'Переключить на тёмную тему'
+      );
+      btn.title = isDark ? 'Светлая тема' : 'Тёмная тема';
+    }
+
+    /* Переключает тему и запоминает выбор пользователя */
+    function toggleTheme() {
+      var nextTheme = getCurrentTheme() === 'dark' ? 'light' : 'dark';
+
+      if (nextTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+
+      localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+      updateThemeToggleUI();
+    }
+
+    updateThemeToggleUI();
+  </script>
 </body>
 </html>
